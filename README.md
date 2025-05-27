@@ -38,6 +38,6 @@
 - ATAC-seq сигнал: [ENCFF093IIW](https://www.encodeproject.org/files/ENCFF093IIW/)
 - Аннотации cCRE: ENCODE SCREEN
 
-## 🧑 Автор
+## Автор
 
 ФИО: Matlaeva AV
