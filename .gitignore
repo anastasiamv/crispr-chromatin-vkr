@@ -1,0 +1,12 @@
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+.DS_Store
+.env
+*.h5ad
+*.csv
+*.tsv
+*.bigWig
+*.bed
+*.joblib
+*.pkl

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head><title>CRISPR Prediction</title></head>
+<body>
+  <h2>Ввод последовательности sgRNA</h2>
+  <form method="POST">
+    <input name="sequence" placeholder="Введите 20mer последовательность" required>
+    <input type="submit" value="Предсказать эффективность">
+  </form>
+  {% if prediction is not none %}
+    <h3>Результат: {{ prediction }}</h3>
+  {% endif %}
+</body>
+</html>
