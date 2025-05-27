@@ -1,14 +1,20 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head><title>CRISPR Prediction</title></head>
-<body>
-  <h2>Ввод последовательности sgRNA</h2>
-  <form method="POST">
-    <input name="sequence" placeholder="Введите 20mer последовательность" required>
-    <input type="submit" value="Предсказать эффективность">
-  </form>
-  {% if prediction is not none %}
-    <h3>Результат: {{ prediction }}</h3>
-  {% endif %}
-</body>
+  <head>
+    <title>CRISPR-прогноз</title>
+  </head>
+  <body>
+    <h2>Введите значения признаков:</h2>
+    <form method="post">
+      {% for feature in features %}
+        <label>{{ feature }}:</label>
+        <input type="text" name="{{ feature }}" value="0"><br><br>
+      {% endfor %}
+      <input type="submit" value="Сделать прогноз">
+    </form>
+    {% if prediction %}
+      <h3>Результат: {{ prediction }}</h3>
+      <p>Вероятность активности: {{ proba }}</p>
+    {% endif %}
+  </body>
 </html>
