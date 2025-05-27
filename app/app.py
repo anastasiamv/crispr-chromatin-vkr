@@ -3,22 +3,30 @@ import joblib
 import pandas as pd
 
 app = Flask(__name__)
-model, features = joblib.load("model.pkl")
 
-def extract_features(seq):
-    return pd.DataFrame([{  # пример
-        "GC_content": (seq.upper().count("G") + seq.upper().count("C")) / len(seq),
-        "has_TTTT": int("TTTT" in seq),
-    }])
+# Загрузка модели и списка признаков
+model, all_features = joblib.load('ensemble_model.pkl')
+features = all_features
 
-@app.route("/", methods=["GET", "POST"])
+@app.route('/', methods=['GET', 'POST'])
 def index():
     prediction = None
-    if request.method == "POST":
-        seq = request.form["sequence"]
-        features_df = extract_features(seq)
-        prediction = model.predict(features_df)[0]
-    return render_template("index.html", prediction=prediction)
+    proba = None
+    if request.method == 'POST':
+        try:
+            values = [float(request.form[feature]) for feature in features]
+            df = pd.DataFrame([values], columns=features)
+            pred = model.predict(df)[0]
+            prob = model.predict_proba(df)[0][1]
+            prediction = 'Активная sgRNA' if pred == 1 else 'Неактивная sgRNA'
+            proba = f'{prob:.2f}'
+        except Exception as e:
+            prediction = f'Ошибка: {e}'
+    return render_template('index.html', features=features, prediction=prediction, proba=proba)
 
-if __name__ == "__main__":
-    app.run(debug=True)
+if __name__ == '__main__':
+    app.run(port=8508)
+
+from pyngrok import ngrok
+public_url = ngrok.connect(8508)
+print("Ссылка на приложение:", public_url)
