@@ -39,8 +39,8 @@
 
 2. Запустите Flask-приложение:
    ```bash
-   cd app
-   python app.py
+   python app_flask.py   # запуск по признакам  
+python app_seq.py     # запуск по последовательности
    ```
 
 ## Данные
