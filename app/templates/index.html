@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head><title>CRISPR-прогноз</title></head>
+<body>
+    <h2>Введите значения признаков:</h2>
+    <form method="post">
+    {% for feature in features %}
+        <label>{{ feature }}:</label>
+        <input type="text" name="{{ feature }}" value="0"><br>
+    {% endfor %}
+        <input type="submit" value="Сделать прогноз">
+    </form>
+    {% if prediction %}
+        <h3>Результат: {{ prediction }}</h3>
+        <p>Вероятность активности: {{ proba }}</p>
+    {% endif %}
+</body>
+</html>

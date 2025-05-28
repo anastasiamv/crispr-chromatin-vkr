@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+  <head>
+    <title>CRISPR-предсказание по последовательности</title>
+  </head>
+  <body>
+    <h2>Введите 20-нуклеотидную последовательность sgRNA:</h2>
+    <form method="post">
+      <input type="text" name="sequence" value="{{ sequence }}" size="30"><br><br>
+      <input type="submit" value="Сделать прогноз">
+    </form>
+    {% if prediction %}
+      <h3>Результат: {{ prediction }}</h3>
+      <p><b>Вероятность активности:</b> {{ proba }}</p>
+    {% endif %}
+  </body>
+</html>
