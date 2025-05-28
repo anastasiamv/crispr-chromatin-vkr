@@ -11,3 +11,4 @@ biopython
 pybedtools
 pyBigWig
 shap
+pyngrok
